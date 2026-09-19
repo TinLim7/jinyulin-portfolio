@@ -10,8 +10,6 @@ modal.addEventListener('close',()=>{document.body.classList.remove('modal-open')
 document.documentElement.classList.add('js');
 const navLinks=[...document.querySelectorAll('nav a')];
 if('IntersectionObserver' in window){
-  const revealer=new IntersectionObserver(entries=>{for(const entry of entries){if(entry.isIntersecting){entry.target.classList.add('is-visible');revealer.unobserve(entry.target);}}},{threshold:.1,rootMargin:'0px 0px -6% 0px'});
-  for(const el of document.querySelectorAll('[data-reveal]'))revealer.observe(el);
   const setActive=link=>{if(!link)return;navLinks.forEach(a=>{a.classList.remove('active');a.removeAttribute('aria-current');});link.classList.add('active');link.setAttribute('aria-current','true');};
   const spy=new IntersectionObserver(entries=>{for(const entry of entries){if(entry.isIntersecting){setActive(navLinks.find(a=>a.getAttribute('href')==='#'+entry.target.id));}}},{rootMargin:'-40% 0px -55% 0px'});
   for(const section of document.querySelectorAll('#work,#practice,#contact'))spy.observe(section);
